@@ -152,3 +152,18 @@ EMAIL_HOST_USER = 'sonampoonam010@gmail.com'
 EMAIL_HOST_PASSWORD = 'eobshulwumnemurp'
 DEFAULT_FROM_EMAIL = 'Bake House <sonampoonam010@gmail.com>'
 
+import os
+# if os.environ.get("CREATE_SUPERUSER") == "1":
+#     from django.contrib.auth import get_user_model
+#     User = get_user_model()
+
+#     username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+#     email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
+#     password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
+
+#     if username and password and not User.objects.filter(username=username).exists():
+#         User.objects.create_superuser(
+#             username=username,
+#             email=email,
+#             password=password
+#         )
