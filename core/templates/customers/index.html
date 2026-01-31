@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake House | Premium Custom Cakes</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pastel-blue: #D0E7FF;
+            --deep-navy: #1A2C38;
+            --soft-lavender: #F3F0FF; 
+            --snow-white: #FBFCFF;
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--snow-white); color: var(--deep-navy); scroll-behavior: smooth; }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* --- HERO --- */
+        .hero-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(26, 44, 56, 0.4); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+
+        /* --- GALLERY --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 24px; border: 10px solid white; box-shadow: 0 20px 45px rgba(208, 231, 255, 0.5); transition: 0.5s ease; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-item:hover { transform: translateY(-10px); }
+
+        /* --- MODERN FORM --- */
+        .registration-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(208, 231, 255, 0.5);
+            border-radius: 40px;
+            padding: 3rem;
+            box-shadow: 0 30px 60px rgba(208, 231, 255, 0.3);
+            position: relative;
+        }
+
+        .input-group { position: relative; margin-bottom: 1.5rem; }
+        .input-group label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: #8ECAE6; }
+        
+        .custom-input {
+            width: 100%;
+            background: white;
+            border: 2px solid var(--pastel-blue);
+            padding: 1rem;
+            border-radius: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .custom-input:focus { border-color: var(--deep-navy); }
+
+        /* Success Message Overlay */
+        #success-msg {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: white;
+            border-radius: 40px;
+            z-index: 10;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .contrast-bg { background-color: var(--soft-lavender); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center bg-white/70 backdrop-blur-md">
+        <h1 class="text-2xl font-bold tracking-tighter text-blue-900 serif italic">Bake House.</h1>
+        <div class="hidden md:flex gap-12 text-[11px] font-bold uppercase tracking-[0.3em]">
+            <a href="#about">Story</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#join">VIP Club</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero-container">
+        <video id="bg-video" autoplay muted loop playsinline><source src="cake-video.mp4" type="video/mp4"></video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 class="text-6xl md:text-9xl serif italic mb-6">Pastel Dreams.</h2>
+            <p class="uppercase tracking-[0.5em] text-xs">Custom Creations for Your Special Days</p>
+        </div>
+    </section>
+
+    <section id="about" class="py-40 px-6 contrast-bg">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-5xl serif italic mb-8">The Art of the Cake</h3>
+            <p class="text-xl text-gray-600 leading-relaxed font-light italic">
+                Our studio in Vadgaon Budruk is dedicated to the philosophy of "Slow Baking"—where every sponge is baked fresh and every petal of icing is hand-piped with precision.
+            </p>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="image1.jpg"></div>
+                <div class="gallery-item"><img src="image2.jpg"></div>
+                <div class="gallery-item"><img src="image3.jpg"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="py-40 px-6 contrast-bg">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div>
+                <h4 class="text-6xl serif italic mb-6 text-blue-900">Join the <br> VIP Club.</h4>
+                <p class="text-gray-500 leading-relaxed">Register your details and your birthday to receive exclusive offers and personalized cake consultations.</p>
+            </div>
+
+            <div class="registration-card" id="form-container">
+                <div id="success-msg">
+                    <div class="text-6xl text-blue-200 mb-4"><i class="fas fa-check-circle"></i></div>
+                    <h5 class="text-2xl serif italic mb-2">Registration Received</h5>
+                    <p class="text-gray-400 text-sm">Thank you for joining our VIP Club. We will be in touch soon.</p>
+                    <button onclick="resetFormUI()" class="mt-6 text-[10px] font-bold uppercase tracking-widest text-blue-400">Back to form</button>
+                </div>
+
+                <div id="main-form">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="reg-name" class="custom-input" placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="input-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="reg-phone" class="custom-input" placeholder="Phone">
+                        </div>
+                        <div class="input-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="reg-dob" class="custom-input">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="reg-email" class="custom-input" placeholder="example@email.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Delivery Address</label>
+                        <textarea id="reg-address" rows="3" class="custom-input" placeholder="House No, Area, Pune"></textarea>
+                    </div>
+
+                    <button onclick="submitToDjango()" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-bold uppercase text-[10px] tracking-[0.4em] hover:bg-blue-800 transition shadow-xl">
+Complete Registration
+</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="h-[500px] w-full border-t border-blue-50">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.4447334706597!2d73.8188151!3d18.4635105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2956260bcbbd9%3A0xc32fdeadbeefcafe!2sVadgaon%20Budruk%2C%20Pune!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+    </section>
+
+    <footer class="py-20 bg-white text-center">
+        <p class="text-[9px] tracking-[0.7em] text-gray-300 uppercase">© 2026 Bake House | Artisan Perfection</p>
+    </footer>
+
+    <script>
+function submitToDjango() {
+    const data = {
+        name: document.getElementById("reg-name").value,
+        phone: document.getElementById("reg-phone").value,
+        dob: document.getElementById("reg-dob").value,
+        email: document.getElementById("reg-email").value,
+        address: document.getElementById("reg-address").value
+    };
+
+    if (!data.name || !data.email || !data.dob) {
+        alert("Please fill Name, Email and Date of Birth.");
+        return;
+    }
+
+    fetch("/api/register/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.status === "success") {
+            document.getElementById("main-form").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("main-form").style.display = "none";
+                document.getElementById("success-msg").style.display = "flex";
+            }, 300);
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    })
+    .catch(() => {
+        alert("Server error. Please try later.");
+    });
+}
+
+function resetFormUI() {
+    document.getElementById("success-msg").style.display = "none";
+    document.getElementById("main-form").style.display = "block";
+    document.getElementById("main-form").style.opacity = "1";
+    document.querySelectorAll(".custom-input").forEach(i => i.value = "");
+}
+
+// Background Video Autoplay Fix
+window.addEventListener('touchstart', function() {
+    const video = document.getElementById('bg-video');
+    if (video) video.play();
+}, {once: true});
+</script>
+
+</body>
+</html>
