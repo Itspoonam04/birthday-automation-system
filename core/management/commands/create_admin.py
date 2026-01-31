@@ -3,24 +3,30 @@ from django.contrib.auth import get_user_model
 import os
 
 class Command(BaseCommand):
-    help = "Create admin user if not exists"
+    help = "Force create admin user"
 
     def handle(self, *args, **kwargs):
         User = get_user_model()
+
         username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
         email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
         password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
 
         if not username or not password:
-            self.stdout.write("Superuser env vars not set")
+            self.stdout.write("❌ Admin env vars missing")
             return
 
-        if not User.objects.filter(username=username).exists():
-            User.objects.create_superuser(
-                username=username,
-                email=email,
-                password=password
-            )
-            self.stdout.write("Superuser created")
+        user, created = User.objects.get_or_create(
+            username=username,
+            defaults={"email": email}
+        )
+
+        user.is_staff = True
+        user.is_superuser = True
+        user.set_password(password)
+        user.save()
+
+        if created:
+            self.stdout.write("✅ Admin user CREATED")
         else:
-            self.stdout.write("Superuser already exists")
+            self.stdout.write("✅ Admin user UPDATED (password + staff)")
