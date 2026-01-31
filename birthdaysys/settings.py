@@ -124,15 +124,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-INSTALLED_APPS += ['django_crontab']
+# INSTALLED_APPS += ['django_crontab']
 
 # CRONJOBS = [
 #     ('0 9 * * *', 'core.utils.send_birthday_emails'),
 # ]
 
-CRONJOBS = [
-    ('*/1 * * * *', 'core.utils.send_birthday_emails'),
-]
+# CRONJOBS = [
+#     ('*/1 * * * *', 'core.utils.send_birthday_emails'),
+# ]
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
